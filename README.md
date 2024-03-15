@@ -4,5 +4,6 @@
 
 MySQL is a popular open-source relational database management system. Below is a video link for installing MySQL:
 
-[Installing MySQL](https://youtu.be/wgRwITQHszU)
-[Reset MySQL root password](https://youtu.be/wgRwITQHszU)
+
+- **Installation Video**: [Installing MySQL](https://youtu.be/wgRwITQHszU)
+- **Reset MySQL root password**: [Reset MYSQL password](https://youtu.be/wgRwITQHszU)
