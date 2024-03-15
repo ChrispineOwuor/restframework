@@ -1,1 +1,2 @@
-These include the tools i use mostly durng coding
+These include the tools I use mostly during coding
+MySQL: Installing MySQL https://youtu.be/wgRwITQHszU
