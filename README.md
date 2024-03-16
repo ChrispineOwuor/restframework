@@ -20,6 +20,6 @@ Object-based cloud storage service to store and retrieve data from anywhere in w
 
 Python framework for server side application
 
-- **Django lifecycle **: [Gunicorn WSGI](https://youtu.be/Ko52pn1KXS0)
+- **Django lifecycle**: [Gunicorn WSGI](https://youtu.be/Ko52pn1KXS0)
 
 
