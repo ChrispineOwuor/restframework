@@ -16,3 +16,10 @@ Object-based cloud storage service to store and retrieve data from anywhere in w
 - **Setup Video**: [Setting up S3](https://youtu.be/Ko52pn1KXS0)
 - **Setup Video**: [Setting up S3 and postgesql](https://youtu.be/LaoYcQsPyD8)
 
+## Django
+
+Python framework for server side application
+
+- **Django lifecycle **: [Gunicorn WSGI](https://youtu.be/Ko52pn1KXS0)
+
+
