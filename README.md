@@ -18,8 +18,9 @@ Object-based cloud storage service to store and retrieve data from anywhere in w
 
 ## Django
 
-Python framework for server side application
+Python framework for server-side application
 
 - **Django lifecycle**: [Gunicorn WSGI](https://youtu.be/Ko52pn1KXS0)
+- **Django environment variables**: [python dotenv](https://youtu.be/7tRLkZO6D3Y)
 
 
