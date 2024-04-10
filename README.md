@@ -11,9 +11,10 @@ MySQL is a popular open-source relational database management system. Below is a
 
 ## AWS S3 storage
 
-Object-based cloud storage service to store and retrieve data from anywhere in web
+Object-based cloud storage service to store and retrieve data from anywhere on web
 
 - **Setup Video**: [Setting up S3](https://youtu.be/Ko52pn1KXS0)
+- **Setup Video**: [Uploading images and static files in s3 bucket](https://youtu.be/JQVQcNN0cXE)
 - **Setup Video**: [Setting up S3 and postgesql](https://youtu.be/LaoYcQsPyD8)
 
 ## Django
