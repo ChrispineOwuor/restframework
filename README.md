@@ -34,3 +34,51 @@ Python framework for server-side application
 - **Django environment variables**: [python dotenv](https://youtu.be/7tRLkZO6D3Y)
 
 
+## Setting Up and Using Python on Ubuntu
+
+Most Ubuntu distributions come with Python 3 pre-installed. To check your Python version, open your terminal and run:
+
+```bash
+python3 --version
+```
+
+First, update your package list, then install Python 3 if Python is not installed:
+
+```bash
+sudo apt update
+sudo apt install python3
+```
+
+Python on Windows comes with pip pre-installed, but on Ubuntu, you may need to install it separately
+
+```bash
+sudo apt install python3-pip
+```
+
+Virtual environments in Ubuntu may need manual setup. To install the Python venv package:
+
+```bash
+sudo apt install python3-venv
+```
+
+To create a new virtual environment named myenv:
+
+```bash
+python3 -m venv myenv
+```
+
+To activate the virtual environment on Ubuntu:
+
+```bash
+source myenv/bin/activate
+```
+
+To deactivate the virtual environment:
+
+```bash
+deactivate
+```
+
+
+
+
