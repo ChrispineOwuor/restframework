@@ -78,6 +78,16 @@ To deactivate the virtual environment:
 ```bash
 deactivate
 ```
+Managing and installing  versions 
+
+```bash
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  133  sudo apt update
+  135  sudo apt install python3.12 -y
+  136  clear
+  137  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+  138  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 2
+  139  sudo update-alternatives --config python3
 
 
 
