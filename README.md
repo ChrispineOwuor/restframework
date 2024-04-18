@@ -8,6 +8,12 @@ MySQL is a popular open-source relational database management system. Below is a
 - **Installation Video**: [Installing MySQL](https://youtu.be/wgRwITQHszU)
 - **Reset MySQL root password**: [Reset MYSQL password](https://youtu.be/wgRwITQHszU)
 
+## Ubuntu
+
+MySQL is a popular open-source relational database management system. Below is a video link for installing MySQL:
+
+
+- **Create a background service**: [Understanding daemons in Unix systems](https://youtu.be/S5TfD50s4Lo)
 
 ## AWS 
 
