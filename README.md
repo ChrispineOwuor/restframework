@@ -32,6 +32,13 @@ Object-based cloud storage service to store and retrieve data from anywhere on t
 - **Setup Video**: [Uploading images and static files in s3 bucket](https://youtu.be/JQVQcNN0cXE)
 - **Setup Video**: [Setting up S3 and postgesql](https://youtu.be/LaoYcQsPyD8)
 
+
+## Render Platform
+
+Object-based cloud storage service to store and retrieve data from anywhere on the web
+
+- **Setup Video**: [Setting up render for django](https://youtu.be/wczWm8j4v9w)
+
 ## Django
 
 Python framework for server-side application
