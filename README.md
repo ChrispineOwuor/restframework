@@ -101,7 +101,110 @@ Managing and installing  versions
   137  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
   138  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 2
   139  sudo update-alternatives --config python3
+```
 
 
+# Creating systemd Socket and Service Files for Gunicorn
 
+## Step 1: Create systemd Socket File
+
+```bash
+sudo nano /etc/systemd/system/shopy.socket
+```
+Paste the code below
+
+``` bash
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/shopy.sock
+
+[Install]
+WantedBy=sockets.target
+```
+## Step 2: Create systemd Service File
+
+```bash
+sudo nano /etc/systemd/system/shopy.service
+```
+Paste this code below
+
+```bash
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/Style_Hub
+ExecStart=/home/ubuntu/Style_Hub/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          style_hub.wsgi:application
+[Install]
+WantedBy=multi-user.target
+```
+## Step 3: Start and Enable Gunicorn Socket
+
+``` bash
+sudo systemctl start shopy.socket
+sudo systemctl enable shopy.socket
+sudo systemctl status shopy.socket
+```
+Check socket Status
+
+```bash
+sudo systemctl status shopy.socket
+```
+you should see this output
+
+```bash
+● shopy.socket - gunicorn socket
+     Loaded: loaded (/etc/systemd/system/shopy.socket; enabled; vendor preset: enabled)
+     Active: active (listening) since Sat 2024-05-04 18:30:12 UTC; 22min ago
+   Triggers: ● shopy.service
+     Listen: /run/shopy.sock (Stream)
+     CGroup: /system.slice/shopy.socket
+
+May 04 18:30:12 ip-172-31-1-254 systemd[1]: Listening on gunicorn socket
+Apr 18 17:53:25 django systemd[1]: Listening on gunicorn socket.
+```
+Reload deamon services as shown below
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+```
+## Step 4: Configure Nginx to Proxy Pass to Gunicorn
+
+```bash
+sudo nano /etc/nginx/sites-available/shopy
+```
+
+```bash
+server {
+    listen *:80;
+    server_name 54.206.41.225;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+       alias /home/ubuntu/Shopy/static;
+    }
+
+    location /{
+        include proxy_params;
+        proxy_pass http://unix:/run/shopy.sock;
+
+    }
+}
+
+```
+## Step 5: Link the sites-available to sites-enabled
+
+```bash
+sudo ln -s /etc/nginx/sites-available/shopy /etc/nginx/sites-enabled
+```
 
