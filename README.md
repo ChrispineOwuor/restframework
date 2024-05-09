@@ -133,7 +133,7 @@ Paste this code below
 ```bash
 [Unit]
 Description=gunicorn daemon
-Requires=gunicorn.socket
+Requires=shopy.socket
 After=network.target
 [Service]
 User=ubuntu
@@ -142,7 +142,7 @@ WorkingDirectory=/home/ubuntu/Style_Hub
 ExecStart=/home/ubuntu/Style_Hub/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
-          --bind unix:/run/gunicorn.sock \
+          --bind unix:/run/shopy.sock \
           style_hub.wsgi:application
 [Install]
 WantedBy=multi-user.target
@@ -191,7 +191,7 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-       alias /home/ubuntu/Shopy/static;
+       alias /home/ubuntu/Shopy/static/;
     }
 
     location /{
