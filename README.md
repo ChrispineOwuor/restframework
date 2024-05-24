@@ -208,3 +208,65 @@ server {
 sudo ln -s /etc/nginx/sites-available/shopy /etc/nginx/sites-enabled
 ```
 
+
+# Sockets as Communication Endpoints
+
+Sockets are endpoints for sending and receiving data across a network. They can be used for inter-process communication (IPC) on the same host or across different hosts over a network.
+
+## Types of Sockets
+
+### Unix Sockets (also known as Unix Domain Sockets)
+These are used for IPC on the same host. They use file paths in the file system as their address namespace.
+
+### TCP Sockets
+These are used for communication over a network using the TCP/IP protocol suite. They use IP addresses and port numbers as their address namespace.
+
+## Communication Between Processes on the Same Host
+When two processes on the same host need to communicate, they can use Unix sockets. This method is efficient because it avoids the overhead of network protocols.
+
+## Socket File
+A Unix socket is represented by a special file in the file system. This file is created when the socket is initialized and is used by processes to connect to the socket.
+
+## Initialization and Boot-Up
+A socket file can be created and initialized at boot-up by a service manager (like systemd on Linux). This socket file acts as a listening endpoint for connections.
+
+## Service Bound to the Socket
+A service can be bound to a socket, meaning it will start and listen for incoming connections on this socket. When another process wants to communicate, it connects to this socket file.
+
+## Example Workflow
+
+- **Process A**: Creates a Unix socket file (e.g., `/tmp/socket_file`) and starts listening for connections.
+- **Process B**: Knows the path to the socket file and connects to it to communicate with Process A.
+- **Service Execution**: When a connection is made to the socket file, the bound service (Process A) handles the communication, executing its logic based on the data received.
+
+# Nginx and Gunicorn as Separate Processes
+
+## Nginx
+Acts as a reverse proxy server. It handles incoming HTTP requests from clients.
+
+## Gunicorn
+Is a WSGI server that runs your web application (e.g., a Django or Flask app) and handles the application logic.
+
+## Communication Through a Unix Socket
+Nginx and Gunicorn communicate via a Unix socket, which is a file-based communication endpoint.
+
+## Unix Socket File
+The Unix socket file (e.g., `/run/shopy.sock`) is created and listened to by Gunicorn. This file acts as the address for the socket.
+
+Gunicorn is bound to this socket file, meaning it listens for connections on this socket.
+
+## Nginx Configuration
+In the Nginx configuration, the `proxy_pass http://unix:/run/shopy.sock;` directive tells Nginx to forward incoming HTTP requests to the Unix socket file where Gunicorn is listening.
+
+## Startup and Initialization
+Typically, the Unix socket file is created and Gunicorn starts listening on it when the system boots up or when the service is started.
+
+## Request Handling Workflow
+
+- **Client Request**: A client sends an HTTP request to Nginx.
+- **Nginx Receives Request**: Nginx processes the request and, based on its configuration, forwards it to the Unix socket file specified in the `proxy_pass` directive.
+- **Gunicorn Receives Request**: Gunicorn, which is bound to the Unix socket, receives the request, processes it using the web application, and sends back a response.
+- **Nginx Forwards Response**: Nginx receives the response from Gunicorn through the Unix socket and forwards it back to the client.
+
+
+
