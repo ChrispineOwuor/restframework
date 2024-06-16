@@ -1,6 +1,6 @@
 # Tools for Coding
 
-## MySQL
+## MySQL SERIES
 
 MySQL is a popular open-source relational database management system. Below is a video link for installing MySQL:
 
